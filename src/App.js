@@ -6,6 +6,7 @@ import history from './services/history';
 import {ThemeProvider} from 'styled-components';
 import LightTheme from './theme/light';
 import DarkTheme from './theme/dark';
+import ThemeSwitcher from './components/common/ThemeSwitcher';
 
 import styled from 'styled-components';
 import { GlobalStyle } from './GlobalStyle';
@@ -19,10 +20,18 @@ class App extends React.Component  {
   state = {
     theme: LightTheme
   };
+  handleToggleTheme = () => {
+    this.setState({
+      theme: this.state.theme.id === 'light' ? DarkTheme : LightTheme
+    });
+  };
   render(){
     return (
       <div className="App">
       <ThemeProvider theme={this.state.theme}>
+        <ThemeSwitcher onClick={this.handleToggleTheme} >
+        <div></div><div></div>
+        </ThemeSwitcher>
         <h1>ToDo App</h1>
         <Body>
         <Switch history={history} >
