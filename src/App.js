@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Route, Switch, Link } from 'react-router-dom';
+import history from './services/history';
+
+import {ThemeProvider} from 'styled-components';
+import LightTheme from './theme/light';
+import DarkTheme from './theme/dark';
+
+import styled from 'styled-components';
+import { GlobalStyle } from './GlobalStyle';
+
+import InsertItem from './components/pages/InsertItem';
+import ErrorPage from './components/pages/ErrorPage';
+
+import Body from './components/containers/Body';
+
+class App extends React.Component  {
+  state = {
+    theme: LightTheme
+  };
+  render(){
+    return (
+      <div className="App">
+      <ThemeProvider theme={this.state.theme}>
+        <h1>ToDo App</h1>
+        <Body>
+        <Switch history={history} >
+            <Route path="/" render={ props => (<InsertItem />) } exact />
+            <Route component={ErrorPage} />
+        </Switch>
+        </Body>
+      <GlobalStyle />
+      </ThemeProvider>
+      </div>
+    );
+  }
 }
 
 export default App;
