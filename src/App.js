@@ -8,6 +8,8 @@ import LightTheme from './theme/light';
 import DarkTheme from './theme/dark';
 import ThemeSwitcher from './components/common/ThemeSwitcher';
 
+import Heading1 from './components/common/Heading1';
+
 import styled from 'styled-components';
 import { GlobalStyle } from './GlobalStyle';
 
@@ -16,15 +18,34 @@ import ErrorPage from './components/pages/ErrorPage';
 
 import Body from './components/containers/Body';
 
+window.id = 0;
 class App extends React.Component  {
   state = {
-    theme: LightTheme
-  };
+    theme: LightTheme,
+    data: [],
+  }
   handleToggleTheme = () => {
     this.setState({
       theme: this.state.theme.id === 'light' ? DarkTheme : LightTheme
     });
-  };
+  }
+  addTodo = (val) => {
+      // Assemble data
+      const todo = {text: val, id: window.id++, cat:'all'}
+      // Update data
+      this.state.data.push(todo);
+      // Update state
+      this.setState({data: this.state.data});
+  }
+    // Handle remove
+  handleRemove = (id) => {
+    // Filter all todos except the one to be removed
+    const remainder = this.state.data.filter((todo) => {
+      if(todo.id !== id) return todo;
+    });
+    // Update state with filter
+    this.setState({data: remainder});
+  }
   render(){
     return (
       <div className="App">
@@ -32,10 +53,11 @@ class App extends React.Component  {
         <ThemeSwitcher onClick={this.handleToggleTheme} >
         <div></div><div></div>
         </ThemeSwitcher>
-        <h1>ToDo App</h1>
+        <Heading1>ToDo App</Heading1>
         <Body>
         <Switch history={history} >
-            <Route path="/" render={ props => (<InsertItem />) } exact />
+            <Route path="/" render={ props => (<InsertItem addTodo={this.addTodo} todos={this.state.data}
+            remove={this.handleRemove} />) } exact />
             <Route component={ErrorPage} />
         </Switch>
         </Body>

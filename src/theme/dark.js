@@ -6,8 +6,13 @@ const DarkTheme = {
   backgroundColorGradientMiddle: '#203a43',
   backgroundColorGradientEnd: '#2c5364',
   textColor: '#fff',
+  bg: '#fff',
+  bgDarken: 'lightgrey',
   primaryColor: '#e2e2e2',
   secondaryColor: 'yellow',
+  darkColor: 'darkblue',
+  danger: '#ff6666',
+  dangerDarken: '#ff2015',
   ThemeSwitcherGradient: 'linear-gradient(#091236, #1E215D)'
 };
 
