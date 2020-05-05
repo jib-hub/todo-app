@@ -55,14 +55,14 @@ const InputTodo = ({addTodo}) => {
   return (
     <InputContainer>
       <InputContainerInner>
-      <Label for="input-add-todo">new Task</Label>
-      <Input name="input-add-todo" ref={node => {
+      <Label htmlFor="input-add-todo">new Task</Label>
+      <Input id="input-add-todo" name="input-add-todo" ref={node => {
         input = node;
       }} large />
       </InputContainerInner>
       <InputContainerInner>
-      <Label for="input-add-todo-cat">Category</Label>
-      <Input name="input-add-todo-cat" ref={node => {
+      <Label htmlFor="input-add-todo-cat">Category</Label>
+      <Input id="input-add-todo-cat" name="input-add-todo-cat" ref={node => {
         input2 = node;
       }} />
       </InputContainerInner>
