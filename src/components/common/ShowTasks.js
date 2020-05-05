@@ -18,6 +18,14 @@ const CustomCheckbox = withStyles({
 })((props) => <Checkbox color="default" {...props} />);
 const FlexContainer = styled.div`
   display: flex;
+  position: relative;
+  padding-top: ${props => (props.paddingTop)? '20px' : '0'}
+`;
+const Seperator = styled.div`
+  width: 100%;
+  height: 1px;
+  background: lightgrey;
+  position: absolute;
 `;
 const Task = styled.div`
   padding: 11px 0 7px 0;
@@ -52,14 +60,23 @@ const TaskCat = styled.div`
   position: absolute;
   right: 0;
 `;
-const Todo = ({todo, remove}) => {
+const CatContainer = styled.div`
+
+`;
+const HeadingCat = styled.div`
+	position: absolute;
+	transform: translateY(-100%);
+  color: #999;
+`;
+const Todo = ({todo, remove, newCat}) => {
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
   return (
-    <FlexContainer>
+    <FlexContainer paddingTop={newCat} >
+      {(newCat) && <CatContainer><HeadingCat>{todo.cat}</HeadingCat><Seperator /></CatContainer>}
       <CustomCheckbox
           checked={checked}
           onChange={handleChange}
@@ -69,11 +86,18 @@ const Todo = ({todo, remove}) => {
       <DeleteIcon onClick={() => { remove(todo.id); }} />
     </FlexContainer>);
 }
+
 const TodoList = ({todos, remove}) => {
 
   todos.sort((a, b) => (a.cat > b.cat) ? 1 : -1);
+  let lastCat = '';
   const todoNode = todos.map((todo) => {
-    return (<Todo todo={todo} key={todo.id} remove={remove}/>)
+    let trigger = false;
+    if (lastCat !== todo.cat) {trigger = true;}
+    lastCat = todo.cat;
+    let node = <Todo newCat={trigger} todo={todo} key={todo.id} remove={remove}/>;
+    return (node)
+
   });
   return (todoNode);
 }
