@@ -3,6 +3,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import history from './services/history';
 
+import TodoLogo from './img/todo_logo.svg';
+
 import {ThemeProvider} from 'styled-components';
 import LightTheme from './theme/light';
 import DarkTheme from './theme/dark';
@@ -52,7 +54,7 @@ class App extends React.Component  {
         <ThemeSwitcher onClick={this.handleToggleTheme} >
         <div></div><div></div>
         </ThemeSwitcher>
-        <Heading1>ToDo App</Heading1>
+        <Heading1><img src={TodoLogo} alt="Todo Logo" /></Heading1>
         <Body>
         <Switch history={history} >
             <Route path="/" render={ props => (<InsertItem addTodo={this.addTodo} todos={this.state.data}

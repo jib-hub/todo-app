@@ -10,10 +10,9 @@ const DarkTheme = {
   bgDarken: 'lightgrey',
   primaryColor: '#e2e2e2',
   secondaryColor: 'yellow',
-  darkColor: 'darkblue',
+  darkColor: '#fff',
   danger: '#ff6666',
-  dangerDarken: '#ff2015',
-  ThemeSwitcherGradient: 'linear-gradient(#091236, #1E215D)'
+  dangerDarken: '#ff2015'
 };
 
 export default DarkTheme;

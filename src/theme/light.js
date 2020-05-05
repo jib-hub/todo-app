@@ -11,8 +11,7 @@ const LightTheme = {
   secondaryColor: 'orange',
   darkColor: 'darkorange',
   danger: '#ff6666',
-  dangerDarken: '#ff2015',
-  ThemeSwitcherGradient: 'linear-gradient(#39598A, #79D7ED)'
+  dangerDarken: '#ff2015'
 };
 
 export default LightTheme;
