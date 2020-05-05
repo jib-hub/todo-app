@@ -40,13 +40,27 @@ const InputTodo = ({addTodo}) => {
     <InputContainer>
       <InputContainerInner>
       <Label htmlFor="input-add-todo">new Task</Label>
-      <Input id="input-add-todo" name="input-add-todo" ref={node => {
+      <Input onKeyPress={(event) => {
+        var code = event.keyCode || event.which;
+        if(code === 13) {
+        (input.value !== '') && addTodo(input.value, input2.value);
+        input.value = '';
+        input2.value = '';
+      }
+      }} id="input-add-todo" name="input-add-todo" ref={node => {
         input = node;
       }} large />
       </InputContainerInner>
       <InputContainerInner>
       <Label htmlFor="input-add-todo-cat">Category</Label>
-      <Input id="input-add-todo-cat" name="input-add-todo-cat" ref={node => {
+      <Input onKeyPress={(event) => {
+        var code = event.keyCode || event.which;
+        if(code === 13) {
+        (input.value !== '') && addTodo(input.value, input2.value);
+        input.value = '';
+        input2.value = '';
+      }
+      }} id="input-add-todo-cat" name="input-add-todo-cat" ref={node => {
         input2 = node;
       }} />
       </InputContainerInner>

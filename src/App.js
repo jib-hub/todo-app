@@ -14,7 +14,7 @@ import Heading1 from './components/common/Heading1';
 
 import { GlobalStyle } from './GlobalStyle';
 
-import InsertItem from './components/pages/InsertItem';
+import InsertItemPage from './components/pages/InsertItemPage';
 import ErrorPage from './components/pages/ErrorPage';
 
 import Body from './components/containers/Body';
@@ -57,7 +57,7 @@ class App extends React.Component  {
         <Heading1><img src={TodoLogo} alt="Todo Logo" /></Heading1>
         <Body>
         <Switch history={history} >
-            <Route path="/" render={ props => (<InsertItem addTodo={this.addTodo} todos={this.state.data}
+            <Route path="/" render={ props => (<InsertItemPage addTodo={this.addTodo} todos={this.state.data}
             remove={this.handleRemove} />) } exact />
             <Route component={ErrorPage} />
         </Switch>

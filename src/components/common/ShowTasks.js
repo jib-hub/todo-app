@@ -60,13 +60,13 @@ const TaskCat = styled.div`
   position: absolute;
   right: 0;
 `;
-const CatContainer = styled.div`
-
-`;
 const HeadingCat = styled.div`
 	position: absolute;
 	transform: translateY(-100%);
   color: #999;
+`;
+const OutputContainer = styled.div`
+  display: ${props => (Object.keys(props.todos).length !== 0) ? 'block' : 'none'};
 `;
 const Todo = ({todo, remove, newCat}) => {
   const [checked, setChecked] = React.useState(false);
@@ -76,7 +76,7 @@ const Todo = ({todo, remove, newCat}) => {
   };
   return (
     <FlexContainer paddingTop={newCat} >
-      {(newCat) && <CatContainer><HeadingCat>{todo.cat}</HeadingCat><Seperator /></CatContainer>}
+      {(newCat) && <><HeadingCat>{todo.cat}</HeadingCat><Seperator /></>}
       <CustomCheckbox
           checked={checked}
           onChange={handleChange}
@@ -101,12 +101,11 @@ const TodoList = ({todos, remove}) => {
   });
   return (todoNode);
 }
-
 class ShowTasks extends React.Component  {
 
   render(){
     return (
-      <div>
+      <OutputContainer todos={this.props.todos}>
       <Spacer />
       <Heading2>Tasks</Heading2>
       <TaskContainer>
@@ -115,7 +114,7 @@ class ShowTasks extends React.Component  {
         remove={this.props.remove}
       />
       </TaskContainer>
-      </div>
+      </OutputContainer>
     );
   }
 
