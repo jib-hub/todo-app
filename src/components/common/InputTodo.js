@@ -51,7 +51,7 @@ const InputTodo = ({addTodo}) => {
       }} />
       </InputContainerInner>
       <PrimaryButton onClick={() => {
-        addTodo(input.value, input2.value);
+        (input.value != '') && addTodo(input.value, input2.value);
         input.value = '';
         input2.value = '';
       }}>ADD</PrimaryButton>
