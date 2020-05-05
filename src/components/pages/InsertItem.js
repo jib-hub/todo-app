@@ -1,8 +1,6 @@
 import React from 'react';
 
 import Wrapper from '../containers/Wrapper'
-import PrimaryButton from '../common/PrimaryButton';
-import TaskInput from '../common/TaskInput';
 import ShowTasks from '../common/ShowTasks';
 
 import InputTodo from '../common/InputTodo';

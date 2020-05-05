@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import history from './services/history';
 
 import {ThemeProvider} from 'styled-components';
@@ -10,7 +10,6 @@ import ThemeSwitcher from './components/common/ThemeSwitcher';
 
 import Heading1 from './components/common/Heading1';
 
-import styled from 'styled-components';
 import { GlobalStyle } from './GlobalStyle';
 
 import InsertItem from './components/pages/InsertItem';
@@ -29,9 +28,9 @@ class App extends React.Component  {
       theme: this.state.theme.id === 'light' ? DarkTheme : LightTheme
     });
   }
-  addTodo = (val) => {
+  addTodo = (val, cat) => {
       // Assemble data
-      const todo = {text: val, id: window.id++, cat:'all'}
+      const todo = {text: val, id: window.id++, cat: cat}
       // Update data
       this.state.data.push(todo);
       // Update state

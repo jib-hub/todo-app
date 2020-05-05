@@ -24,6 +24,8 @@ const Task = styled.div`
   position: relative;
   overflow: hidden;
   margin-left: 5px;
+  display: flex;
+  width: 100%;
 `;
 const TaskLine = styled.div`
   transition: transform .5s ease;
@@ -45,6 +47,11 @@ const DeleteIcon = styled(DeleteForeverIcon)`
     fill: ${props => props.theme.dangerDarken} !important;
   }
 `;
+const TaskCat = styled.div`
+  color: grey;
+  position: absolute;
+  right: 0;
+`;
 const Todo = ({todo, remove}) => {
   const [checked, setChecked] = React.useState(false);
 
@@ -58,13 +65,13 @@ const Todo = ({todo, remove}) => {
           onChange={handleChange}
           inputProps={{ 'aria-label': 'primary checkbox' }}
       />
-      <Task>{todo.text}, {todo.cat}<TaskLine show={checked} /></Task>
+      <Task>{todo.text}<TaskCat>{todo.cat}</TaskCat><TaskLine show={checked} /></Task>
       <DeleteIcon onClick={() => { remove(todo.id); }} />
     </FlexContainer>);
-  //return (<li>{todo.text}</li>);
 }
 const TodoList = ({todos, remove}) => {
-  // Map through the todos
+
+  todos.sort((a, b) => (a.cat > b.cat) ? 1 : -1);
   const todoNode = todos.map((todo) => {
     return (<Todo todo={todo} key={todo.id} remove={remove}/>)
   });

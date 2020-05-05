@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
-import { TextField } from '@material-ui/core';
 
 const PrimaryButton = styled(Button).attrs({
   color: 'primary'
@@ -32,10 +31,16 @@ const Input = styled.input`
   border: 0;
   padding-left: 15px;
   font-size: 18px;
-  width: 348px;
+  width: ${props => (props.large)? '214px' : '92px'};
+  margin-left: ${props => (props.large)? '0' : '2px'};
   color: ${props => props.theme.backgroundColorGradientEnd};
 `;
 const InputContainer = styled.div`
+  display: flex;
+  margin: 0 auto;
+  width: 404px;
+`;
+const InputContainerInner = styled.div`
   position: relative;
   display: flex;
   margin: 0 auto;
@@ -45,16 +50,26 @@ const InputContainer = styled.div`
 const InputTodo = ({addTodo}) => {
   // Input tracker
   let input;
+  let input2;
 
   return (
     <InputContainer>
+      <InputContainerInner>
       <Label for="input-add-todo">new Task</Label>
       <Input name="input-add-todo" ref={node => {
         input = node;
+      }} large />
+      </InputContainerInner>
+      <InputContainerInner>
+      <Label for="input-add-todo-cat">Category</Label>
+      <Input name="input-add-todo-cat" ref={node => {
+        input2 = node;
       }} />
+      </InputContainerInner>
       <PrimaryButton onClick={() => {
-        addTodo(input.value);
+        addTodo(input.value, input2.value);
         input.value = '';
+        input2.value = '';
       }}>ADD</PrimaryButton>
     </InputContainer>
   );
