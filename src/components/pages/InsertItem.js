@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Wrapper from '../containers/Wrapper'
+import Wrapper from '../containers/Wrapper';
 import ShowTasks from '../common/ShowTasks';
 
 import InputTodo from '../common/InputTodo';
